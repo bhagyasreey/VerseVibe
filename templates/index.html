@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+	<link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <header>
+        <img src="/static/VerseVibe.png" width="8%" height="20%" alt="VerseVibe">
+        <div class="header-text"><span class="Verse">Verse</span><span class="Vibe">Vibe</span></div>
+        <nav>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul id="nav-links">
+                <li><a href="index.html" style="color: #bca0dd">Home</a></li>
+                <li><a href="notes.html" style="color: #0cc0df">Notes</a></li>
+                <li><a href="login.html" style="color: #bca0dd">SignIn / SignUp</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="slide-one">
+        <div class="text-search">
+        <p>Search. Read. Save.</p>
+        <div class="search">
+            <form id="searchForm" method="GET" action="/search_results">
+                <div style="display:flex">
+            <input id="searchTerm" name="search_term" type="text" placeholder="Search..." >
+                    <button type="submit"><img src="/static/search.png" ></button>
+</div>
+            <input id="artistdiv" style="display:none;" type="text" name="search_artist" placeholder="Artist" value="">
+
+<br>
+            <div style="display: flex; justify-content: space-around; margin: 10px;">
+    <input type="radio" id="song" name="search_value" value="song" onchange="Artist()">
+    <label for="song">Song</label><br>
+    <input type="radio" id="artist" name="search_value" value="artist" onchange="Artist()">
+    <label for="artist">Artist</label><br>
+    <input type="radio" id="album" name="search_value" value="album" onchange="Artist()">
+    <label for="album">Album</label><br>
+    <input type="radio" id="lyric" name="search_value" value="lyric" checked onchange="Artist()">
+    <label for="lyric">Lyric</label>
+</div>
+
+            </form>
+
+        </div>
+
+        </div>
+        <figure class="quote">
+           <blockquote style="color: #0cc0df; white-space: pre-line; line-height: 1.6em" >Feel the rain on your skin
+No one else can feel it for you
+Only you can let it in
+No one else, no one else
+Can speak the words on your lips
+          </blockquote>
+           <figcaption style="color: #bca0dd" >
+                &mdash; Taylor Swift, <cite>Miss Americana</cite>
+           </figcaption>
+        </figure>
+    </div>
+
+    <div class="side-two">
+        {{ chart['chart_items'][0]['item']['full_title'] }}
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        function Artist(){
+             const selectedValue = document.querySelector('input[name="search_value"]:checked').value;
+            const artistInputDiv = document.getElementById('artistdiv');
+            if (selectedValue === 'song' || selectedValue === 'album') {
+                artistInputDiv.style.display="block";
+            }
+            else{
+                artistInputDiv.style.display="none";
+            }
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            const selectedValue = document.querySelector('input[name="search_value"]:checked');
+            if (!selectedValue) {
+                alert('Please select an option.');
+                event.preventDefault();
+            }
+        });
+
+    </script>
+</body>
+</html>

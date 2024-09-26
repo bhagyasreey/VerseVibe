@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    {% if results %}
+        {% if results['sections'] %}
+            {% for section in results['sections'] %}
+                {% if section['type'] == 'song' %}
+                    <h2>Songs</h2>
+                    <ul>
+                        {% for hit in section['hits'] %}
+                            <li>{{ hit['result']['title'] }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if section['type'] == 'lyric' %}
+                    <h2>Lyrics</h2>
+                    <ul>
+                        {% for hit in section['hits'] %}
+                            <li>{{ hit['result']['title'] }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <p>No search results found.</p>
+    {% endif %}
+</body>
+</html>

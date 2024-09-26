@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+<div class="form-structor">
+		<form action="{{ url_for('register') }}" method="post">
+		<div class="login slide-up">
+		<div class="center">
+
+			<div class="form-holder">
+				<div class="msg">{{ msg }}</div>
+					<input id="signusername" name="username" type="text" placeholder="Username" class="input"/>
+					<input id="signpassword" name="password" type="password" placeholder="Password" class="input"/>
+					<input id="email" name="email" type="text" placeholder="Email ID" class="input" />
+					<input type="submit" class="submit-btn" value="Sign Up">
+			</div>
+			</div>
+		</div>
+
+</form>
+</body>
+</html>
